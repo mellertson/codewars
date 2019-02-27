@@ -23,6 +23,15 @@ def toJadenCase(string):
 
 
 def reverse_words(text):
+	"""
+	Reverses each word a string retaining spaces between words.
+
+	:param text: The string to be reversed.
+	:type text: str
+	:return: The reversed string.
+	:rtype: str
+	"""
+
 	words = text.split(' ')
 	for i, word in enumerate(words):
 		words[i] = word[::-1]
