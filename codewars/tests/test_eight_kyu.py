@@ -1,5 +1,5 @@
 import unittest
-from codewars.jadencasingstrings import *
+from codewars.eight_kyu import *
 
 
 class toJadenCase_Tests(unittest.TestCase):
