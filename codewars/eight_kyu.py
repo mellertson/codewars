@@ -2,6 +2,7 @@
 
 __all__ = [
 	'toJadenCase',
+	'reverse_words',
 ]
 
 
@@ -20,4 +21,11 @@ def toJadenCase(string):
 		jcs[i] = jcs[i][0].upper() + jcs[i][1:]
 	return ' '.join(jcs)
 
+
+def reverse_words(text):
+	words = text.split(' ')
+	for word in words:
+		i = words.index(word)
+		words[i] = word[::-1]
+	return ' '.join(words)
 
