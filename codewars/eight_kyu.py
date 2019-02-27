@@ -24,8 +24,8 @@ def toJadenCase(string):
 
 def reverse_words(text):
 	words = text.split(' ')
-	for word in words:
-		i = words.index(word)
+	for i, word in enumerate(words):
 		words[i] = word[::-1]
 	return ' '.join(words)
+
 
