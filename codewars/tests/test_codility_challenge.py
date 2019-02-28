@@ -106,6 +106,12 @@ class binary_gap_Tests(unittest.TestCase):
 		eO = 28
 		self.assertEqual(eO, binary_gap(N))
 
+	def test_mid_range_5(self):
+		''' bg_str == "1000100000000000000000000000001" '''
+		N = 1140850689
+		eO = 25
+		self.assertEqual(eO, binary_gap(N))
+
 	def test_upper_limit_1(self):
 		N = 2147483647
 		eO = 0
@@ -116,8 +122,8 @@ class binary_gap_Tests(unittest.TestCase):
 		eO = 29
 		self.assertEqual(eO, binary_gap(N))
 
-	def test_all_N_in_range(self):
-		for xyz in range(1000):
+	def test_large1___ten_thousand_times(self):
+		for xyz in range(10000):
 			zeros = [0 for x in range(31)]
 			zeros[0] = 1
 			zeros[-1] = 1

@@ -24,20 +24,17 @@ def solution(A):
 			return i
 
 
-zeros_ptn = re.compile(r'(10+1)')
+zeros_ptn = re.compile(r'(?=(10+1))')
 
 
 def binary_gap(N):
 	bg_str = bin(N)[2:]
-	m = zeros_ptn.search(bg_str)
-	if m is None:
-		return 0
-	else:
-		n = 0
-		for g in m.groups():
-			if len(g) > n:
-				n = len(g)
-		return n - 2
+	n = 0
+	for s in zeros_ptn.findall(bg_str):
+		l = len(s) - 2
+		if l > n:
+			n = l
+	return n
 
 
 
