@@ -139,7 +139,17 @@ class binary_gap_Tests(unittest.TestCase):
 				'-'*100 + f'\nbinary_gap({N}) == {binary_gap(N)}\nbin({N}) == {bin(N)} where xyz == {xyz}')
 
 
+class frog_jump_Tests(unittest.TestCase):
 
+	def setUp(self):
+		self.min = 1
+		self.max = 1000000000
+
+	def test_large1___ten_thousand_times(self):
+		for i in range(100):
+			x = randint(self.min, self.max)
+			y = randint(x, self.max)
+			d = randint(self.min, self.max)
 
 
 
