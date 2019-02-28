@@ -38,3 +38,7 @@ def reverse_words(text):
 	return ' '.join(words)
 
 
+def divisors(integer):
+	pass
+
+
