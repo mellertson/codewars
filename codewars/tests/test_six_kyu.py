@@ -4,7 +4,7 @@ from codewars.six_kyu import *
 
 class balance_Tests(unittest.TestCase):
 
-	def test_should_pass_b1(self):
+	def setUp(self):
 		b1 = """1000.00!=
 
 125 Market !=:125.45
@@ -23,9 +23,6 @@ class balance_Tests(unittest.TestCase):
 Total expense  198.27\r
 Average expense  39.65"""
 
-		self.assertEqual(b1sol, balance(b1))
-
-	def test_should_pass_b2(self):
 		b2 = """1233.00
 125 Hardware;! 24.8?;
 123 Flowers 93.5
@@ -56,9 +53,6 @@ Average expense  39.65"""
 Total expense  640.90\r
 Average expense  53.41"""
 
-		self.assertEqual(b2sol, balance(b2))
-
-	def test_should_pass_b3(self):
 		b3 = """1233.00
 125 Hardware;!  24.801?;
 123 Flowers 93.5025
@@ -89,7 +83,27 @@ Average expense  53.41"""
 Total expense  640.90\r
 Average expense  53.41"""
 
-		self.assertEqual(b3sol, balance(b3))
+		self.cases = [
+			{'input': b1, 'output':  b1sol},
+			{'input': b2, 'output':  b2sol},
+			{'input': b3, 'output':  b3sol},
+		]
+
+	def test_should_pass(self):
+		for case in self.cases:
+			self.assertEqual(
+				case['output'],
+				balance(case['input']),
+				f'error on case {self.cases.index(case)+1}')
+
+	def test_stress_for_profiling(self):
+		for i in range(10000):
+			for case in self.cases:
+				self.assertEqual(
+					case['output'],
+					balance(case['input']),
+					f'error on case {self.cases.index(case)+1}')
+
 
 
 
