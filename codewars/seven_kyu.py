@@ -10,6 +10,8 @@ def divisors(integer):
 	"""
 	Return a list of divisors of an integer
 
+	NOTE: this function is not optimized for large primes
+
 	:param integer: The integer
 	:type integer: int
 	:return: The list of divisors or primality string
