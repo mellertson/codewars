@@ -4,7 +4,7 @@ import re, math, os, sys
 __all__ = [
 	'find_smallest_integer_in_set',
 	'binary_gap',
-	'gun_io_solution',
+	'solution',
 ]
 
 
@@ -35,8 +35,34 @@ def binary_gap(N):
 	return n
 
 
-def gun_io_solution(N):
-	pass
+def solution(message, K):
+	'''
+	Crop words from a message with max chars of K
+
+	:param message:
+	:type message: str
+	:param K:
+	:type K: int
+	:return:
+	:rtype: str
+	'''
+
+	p = re.compile(r'\b[a-zA-Z]+\b')
+	r = ''
+	matches = p.findall(message)
+	for word in matches:
+		if len(r) == 0:
+			if len(word) <= K:
+				r = word
+			else:
+				return ''
+		else:
+			if len(f'{r} {word}') <= K:
+				r = f'{r} {word}'
+			else:
+				return r
+	return r
+
 
 
 

@@ -226,14 +226,25 @@ start really the end'''
 
 class Gun_IO_Tests(unittest.TestCase):
 
+	def heading(self, message):
+		r = '\n\n' + '-' * 100 + '\n\n'
+		r += message
+		r += '\n\n' + '-' * 100 + '\n'
+		return r
+
 	@classmethod
 	def print_line(cls):
 		print('\n' + '-' * 100 + '\n')
 
 	def setUp(self):
 		self.print_line()
-		self.min = 1
-		self.max = 2147483647
+		self.cases = [
+			{'message': '', 'K': 0, 'eO': ''},
+			{'message': 'one', 'K': 2, 'eO': ''},
+			{'message': 'one', 'K': 3, 'eO': 'one'},
+			{'message': 'one', 'K': 4, 'eO': 'one'},
+			{'message': 'one', 'K': 100, 'eO': 'one'},
+		]
 
 	def tearDown(self):
 		self.print_line()
@@ -241,18 +252,131 @@ class Gun_IO_Tests(unittest.TestCase):
 	def test_case1(self):
 		# setup
 		print('test_case1')
-		N = 1
+		message = 'Codility We test coder'
+		K = 14
 
 		# test
-		r = gun_io_solution(N)
+		self.assertEqual(
+			'Codility We',
+			solution(message, K)
+		)
 
+	def test_case2(self):
+		message = 'Why not'
+		K = 100
+		self.assertEqual(
+			'Why not',
+			solution(message, K)
+		)
 
-		# verify
-		self.assertIsNone(r)
+	def test_case3(self):
+		message = 'The quick brown fox jumps over the lazy dog'
+		K = 39
+		self.assertEqual(
+			'The quick brown fox jumps over the lazy',
+			solution(message, K)
+		)
 
-	def test_large1(self):
-		''' 10,000 iterations '''
+	def test_case4(self):
+		message = ' The quick brown fox jumps over the lazy dog'
+		K = 39
+		self.assertEqual(
+			'The quick brown fox jumps over the lazy',
+			solution(message, K)
+		)
 
-		# setup
-		print('test_large1')
+	def test_case5(self):
+		message = ''
+		K = 39
+		self.assertEqual(
+			'',
+			solution(message, K)
+		)
 
+	def test_case6(self):
+		message = ' '
+		K = 39
+		self.assertEqual(
+			'',
+			solution(message, K)
+		)
+
+	def test_case7(self):
+		message = 'Super'
+		K = 2
+		self.assertEqual(
+			'',
+			solution(message, K)
+		)
+
+	def test_case8(self):
+		message = ' Super the       test '
+		K = 2
+		self.assertEqual(
+			'',
+			solution(message, K)
+		)
+
+	def test_case9(self):
+		message = ' Super the test '
+		K = 100
+		self.assertEqual(
+			'Super the test',
+			solution(message, K)
+		)
+
+	def test_case10(self):
+		message = ''
+		K = 100
+		self.assertEqual(
+			'',
+			solution(message, K)
+		)
+
+	def test_case11(self):
+		message = ''
+		K = 0
+		self.assertEqual(
+			'',
+			solution(message, K)
+		)
+
+	def test_case12(self):
+		message = 'one'
+		K = 0
+		self.assertEqual(
+			'',
+			solution(message, K)
+		)
+
+	def test_case13(self):
+		message = 'one'
+		K = 1
+		self.assertEqual(
+			'',
+			solution(message, K)
+		)
+
+	def test_case14(self):
+		message = 'one'
+		K = 2
+		self.assertEqual(
+			'',
+			solution(message, K)
+		)
+
+	def test_case15(self):
+		message = 'one'
+		K = 2
+		self.assertEqual(
+			'',
+			solution(message, K)
+		)
+
+	def test_cases(self):
+		for case in self.cases:
+			message = case['message']
+			K = case['K']
+			eO = case['eO']
+			aO = solution(message, K)
+			self.assertEqual(eO, aO, self.heading(f'Expected:\n{eO}\n\nBut, got:\n{aO}'))
