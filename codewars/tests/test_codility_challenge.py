@@ -239,11 +239,26 @@ class Gun_IO_Tests(unittest.TestCase):
 	def setUp(self):
 		self.print_line()
 		self.cases = [
+			# empty string
 			{'message': '', 'K': 0, 'eO': ''},
-			{'message': 'one', 'K': 2, 'eO': ''},
-			{'message': 'one', 'K': 3, 'eO': 'one'},
-			{'message': 'one', 'K': 4, 'eO': 'one'},
-			{'message': 'one', 'K': 100, 'eO': 'one'},
+			{'message': '', 'K': 1, 'eO': ''},
+			{'message': '', 'K': 100, 'eO': ''},
+
+			# only spaces
+			{'message': ' ', 'K': 0, 'eO': ''},
+			{'message': ' ', 'K': 1, 'eO': ''},
+			{'message': ' ', 'K': 100, 'eO': ''},
+			{'message': '  ', 'K': 0, 'eO': ''},
+			{'message': '  ', 'K': 1, 'eO': ''},
+			{'message': '  ', 'K': 2, 'eO': ''},
+			{'message': '  ', 'K': 100, 'eO': ''},
+
+			# one word, no spaces
+			{'message': 'ab', 'K': 0, 'eO': ''},
+			{'message': 'ab', 'K': 1, 'eO': ''},
+			{'message': 'ab', 'K': 2, 'eO': 'ab'},
+			{'message': 'ab', 'K': 3, 'eO': 'ab'},
+			{'message': 'ab', 'K': 100, 'eO': 'ab'},
 		]
 
 	def tearDown(self):
