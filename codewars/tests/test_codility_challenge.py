@@ -259,6 +259,14 @@ class Gun_IO_Tests(unittest.TestCase):
 			{'message': 'ab', 'K': 2, 'eO': 'ab'},
 			{'message': 'ab', 'K': 3, 'eO': 'ab'},
 			{'message': 'ab', 'K': 100, 'eO': 'ab'},
+
+			# one word, space prefix
+			{'message': ' ab', 'K': 0, 'eO': ''},
+			{'message': ' ab', 'K': 1, 'eO': ''},
+			{'message': ' ab', 'K': 2, 'eO': 'ab'},
+			{'message': ' ab', 'K': 3, 'eO': 'ab'},
+			{'message': ' ab', 'K': 4, 'eO': 'ab'},
+			{'message': ' ab', 'K': 100, 'eO': 'ab'},
 		]
 
 	def tearDown(self):
