@@ -1,4 +1,4 @@
-import unittest
+import unittest, re
 from random import randint
 from timeout_decorator import timeout
 from codewars.codility_challenge import *
@@ -152,6 +152,82 @@ class frog_jump_Tests(unittest.TestCase):
 			d = randint(self.min, self.max)
 
 
+class regeex_Tests(unittest.TestCase):
+
+	def print_line(self):
+		print('\n' + '-' * 100 + '\n')
+
+	def setUp(self):
+		self.print_line()
+
+	def tearDown(self):
+		self.print_line()
+
+	def test_pattern_finditer(self):
+		# setup
+		text = '''abcdefghijklmnopqrstuvwxyz
+		Rubber duckies rub rubber with their feet
+		1010010001000010000010000001000000010000000001
+		'''
+		str1 = r'abc'
+		str2 = r'\b\w*be\w*\b'
+		str3 = r'[Rr]ub\w*'
+		ptn1 = re.compile(str1)
+		ptn2 = re.compile(str2)
+		ptn3 = re.compile(str3)
+
+		# test: for ptn 1
+		matches1 = ptn1.finditer(text)
+		print(f"matches found with r'{str1}':")
+		for match in matches1:
+			print(match)
+
+		# test: for ptn 2
+		self.print_line()
+		matches2 = ptn2.finditer(text)
+		print(f"matches found with r'{str2}':")
+		for match in matches2:
+			print(match)
+
+		# test: for ptn 3
+		self.print_line()
+		matches = ptn3.finditer(text)
+		print(f"matches found with r'{str3}':")
+		for match in matches:
+			print(match)
+
+	def match_and_print(self, raw_string, search_text, flags=None):
+		if flags:
+			ptn = re.compile(raw_string, flags=flags)
+		else:
+			ptn = re.compile(raw_string)
+		matches = ptn.finditer(search_text)
+		print(f"With regex pattern:\n\tr'{raw_string}'\n\nThe following matches were found:")
+		for match in matches:
+			print(f'\t{match}')
+		print(f'\nIn the text: "{search_text}"')
+
+	def test_beginning_end_of_string_regex____with_out_MULTILINE_flag(self):
+		text = '''start end
+start but not the end
+start still not the end
+start really the end'''
+		pstart = r'^start'
+		self.match_and_print(pstart, text)
+		self.print_line()
+		pend = r'end$'
+		self.match_and_print(pend, text)
+
+	def test_beginning_end_of_string_regex____with_MULTILINE_flag(self):
+		text = '''start end
+start but not the end
+start still not the end
+start really the end'''
+		pstart = r'^start'
+		self.match_and_print(pstart, text, flags=re.MULTILINE)
+		self.print_line()
+		pend = r'end$'
+		self.match_and_print(pend, text, flags=re.MULTILINE)
 
 
 
