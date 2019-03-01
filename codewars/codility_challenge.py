@@ -2,12 +2,12 @@ import re, math, os, sys
 
 
 __all__ = [
-	'solution',
+	'find_smallest_integer_in_set',
 	'binary_gap',
 ]
 
 
-def solution(A):
+def find_smallest_integer_in_set(A):
 	"""
 
 	:param A:
@@ -16,11 +16,8 @@ def solution(A):
 	:rtype: int
 	"""
 
-	A_dict = {x:None for x in A}
-	items = sorted(A_dict.keys())
-	orange = range(1, 1000000)
-	for i in orange:
-		if i not in items:
+	for i in range(1, 1000000):
+		if i not in A:
 			return i
 
 

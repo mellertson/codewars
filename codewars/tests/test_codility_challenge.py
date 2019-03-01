@@ -4,12 +4,11 @@ from timeout_decorator import timeout
 from codewars.codility_challenge import *
 
 
-class codility_Tests(unittest.TestCase):
+class find_smallest_integer_in_set_Tests(unittest.TestCase):
 
 	def setUp(self):
 		self.max_length = 111111
-		self.large1_length = int(self.max_length * 1.4)
-		self.assertEqual(self.large1_length, 41111)
+		self.large1_length = int(self.max_length * 0.4)
 		self.min = -1111111
 		self.max = 1111111
 		self.cases = [
@@ -31,12 +30,7 @@ class codility_Tests(unittest.TestCase):
 		for item in self.cases:
 			i = item['input']
 			eO = item['output']
-			self.assertEqual(eO, solution(i))
-
-	# @timeout(11.1)
-	def test_large1(self):
-		for i in range(41111):
-			self.assertEqual(self.large1_eO, solution(self.large1))
+			self.assertEqual(eO, find_smallest_integer_in_set(i))
 
 
 class binary_gap_Tests(unittest.TestCase):
@@ -152,7 +146,7 @@ class frog_jump_Tests(unittest.TestCase):
 			d = randint(self.min, self.max)
 
 
-class regeex_Tests(unittest.TestCase):
+class regex_Tests(unittest.TestCase):
 
 	def print_line(self):
 		print('\n' + '-' * 100 + '\n')
@@ -228,6 +222,18 @@ start really the end'''
 		self.print_line()
 		pend = r'end$'
 		self.match_and_print(pend, text, flags=re.MULTILINE)
+
+
+class Gun_IO_Tests(unittest.TestCase):
+
+	def print_line(self):
+		print('\n' + '-' * 100 + '\n')
+
+	def setUp(self):
+		self.print_line()
+
+	def tearDown(self):
+		self.print_line()
 
 
 
