@@ -249,10 +249,12 @@ class Gun_IO_Tests(unittest.TestCase):
 			{'message': '', 'K': 1, 'eO': ''},
 			{'message': '', 'K': 100, 'eO': ''},
 
-			# only spaces
+			# one space
 			{'message': ' ', 'K': 0, 'eO': ''},
 			{'message': ' ', 'K': 1, 'eO': ''},
 			{'message': ' ', 'K': 100, 'eO': ''},
+
+			# two spaces
 			{'message': '  ', 'K': 0, 'eO': ''},
 			{'message': '  ', 'K': 1, 'eO': ''},
 			{'message': '  ', 'K': 2, 'eO': ''},
@@ -273,6 +275,14 @@ class Gun_IO_Tests(unittest.TestCase):
 			{'message': ' ab', 'K': 4, 'eO': 'ab'},
 			{'message': ' ab', 'K': 100, 'eO': 'ab'},
 
+			# one word, two space prefix
+			{'message': '  ab', 'K': 0, 'eO': ''},
+			{'message': '  ab', 'K': 1, 'eO': ''},
+			{'message': '  ab', 'K': 2, 'eO': 'ab'},
+			{'message': '  ab', 'K': 3, 'eO': 'ab'},
+			{'message': '  ab', 'K': 4, 'eO': 'ab'},
+			{'message': '  ab', 'K': 100, 'eO': 'ab'},
+
 			# one word, trailing space
 			{'message': 'ab ', 'K': 0, 'eO': ''},
 			{'message': 'ab ', 'K': 1, 'eO': ''},
@@ -281,6 +291,14 @@ class Gun_IO_Tests(unittest.TestCase):
 			{'message': 'ab ', 'K': 4, 'eO': 'ab'},
 			{'message': 'ab ', 'K': 100, 'eO': 'ab'},
 
+			# one word, two trailing spaces
+			{'message': 'ab  ', 'K': 0, 'eO': ''},
+			{'message': 'ab  ', 'K': 1, 'eO': ''},
+			{'message': 'ab  ', 'K': 2, 'eO': 'ab'},
+			{'message': 'ab  ', 'K': 3, 'eO': 'ab'},
+			{'message': 'ab  ', 'K': 4, 'eO': 'ab'},
+			{'message': 'ab  ', 'K': 100, 'eO': 'ab'},
+
 			# one word, space prefix and trailing space
 			{'message': ' ab ', 'K': 0, 'eO': ''},
 			{'message': ' ab ', 'K': 1, 'eO': ''},
@@ -288,6 +306,18 @@ class Gun_IO_Tests(unittest.TestCase):
 			{'message': ' ab ', 'K': 3, 'eO': 'ab'},
 			{'message': ' ab ', 'K': 4, 'eO': 'ab'},
 			{'message': ' ab ', 'K': 100, 'eO': 'ab'},
+
+			# one word, two space prefix and two trailing spaces
+			{'message': '  ab  ', 'K': 0, 'eO': ''},
+			{'message': '  ab  ', 'K': 1, 'eO': ''},
+			{'message': '  ab  ', 'K': 2, 'eO': 'ab'},
+			{'message': '  ab  ', 'K': 3, 'eO': 'ab'},
+			{'message': '  ab  ', 'K': 4, 'eO': 'ab'},
+			{'message': '  ab  ', 'K': 100, 'eO': 'ab'},
+
+			# --------------------------------------------------------
+			# cases with only one space in between words
+			# --------------------------------------------------------
 
 			# two words, no spaces
 			{'message': 'ab cd', 'K': 0, 'eO': ''},
@@ -309,6 +339,16 @@ class Gun_IO_Tests(unittest.TestCase):
 			{'message': ' ab cd', 'K': 6, 'eO': 'ab cd'},
 			{'message': ' ab cd', 'K': 100, 'eO': 'ab cd'},
 
+			# two words, two space prefix
+			{'message': '  ab cd', 'K': 0, 'eO': ''},
+			{'message': '  ab cd', 'K': 1, 'eO': ''},
+			{'message': '  ab cd', 'K': 2, 'eO': 'ab'},
+			{'message': '  ab cd', 'K': 3, 'eO': 'ab'},
+			{'message': '  ab cd', 'K': 4, 'eO': 'ab'},
+			{'message': '  ab cd', 'K': 5, 'eO': 'ab cd'},
+			{'message': '  ab cd', 'K': 6, 'eO': 'ab cd'},
+			{'message': '  ab cd', 'K': 100, 'eO': 'ab cd'},
+
 			# two words, trailing space
 			{'message': 'ab cd ', 'K': 0, 'eO': ''},
 			{'message': 'ab cd ', 'K': 1, 'eO': ''},
@@ -319,6 +359,16 @@ class Gun_IO_Tests(unittest.TestCase):
 			{'message': 'ab cd ', 'K': 6, 'eO': 'ab cd'},
 			{'message': 'ab cd ', 'K': 100, 'eO': 'ab cd'},
 
+			# two words, two trailing spaces
+			{'message': 'ab cd  ', 'K': 0, 'eO': ''},
+			{'message': 'ab cd  ', 'K': 1, 'eO': ''},
+			{'message': 'ab cd  ', 'K': 2, 'eO': 'ab'},
+			{'message': 'ab cd  ', 'K': 3, 'eO': 'ab'},
+			{'message': 'ab cd  ', 'K': 4, 'eO': 'ab'},
+			{'message': 'ab cd  ', 'K': 5, 'eO': 'ab cd'},
+			{'message': 'ab cd  ', 'K': 6, 'eO': 'ab cd'},
+			{'message': 'ab cd  ', 'K': 100, 'eO': 'ab cd'},
+
 			# two words, space prefix and trailing space
 			{'message': ' ab cd ', 'K': 0, 'eO': ''},
 			{'message': ' ab cd ', 'K': 1, 'eO': ''},
@@ -328,6 +378,90 @@ class Gun_IO_Tests(unittest.TestCase):
 			{'message': ' ab cd ', 'K': 5, 'eO': 'ab cd'},
 			{'message': ' ab cd ', 'K': 6, 'eO': 'ab cd'},
 			{'message': ' ab cd ', 'K': 100, 'eO': 'ab cd'},
+
+			# two words, two space prefix and two trailing spaces
+			{'message': '  ab cd  ', 'K': 0, 'eO': ''},
+			{'message': '  ab cd  ', 'K': 1, 'eO': ''},
+			{'message': '  ab cd  ', 'K': 2, 'eO': 'ab'},
+			{'message': '  ab cd  ', 'K': 3, 'eO': 'ab'},
+			{'message': '  ab cd  ', 'K': 4, 'eO': 'ab'},
+			{'message': '  ab cd  ', 'K': 5, 'eO': 'ab cd'},
+			{'message': '  ab cd  ', 'K': 6, 'eO': 'ab cd'},
+			{'message': '  ab cd  ', 'K': 100, 'eO': 'ab cd'},
+
+			# --------------------------------------------------------
+			# cases with two spaces in between words
+			# --------------------------------------------------------
+
+			# two words, no spaces
+			{'message': 'ab  cd', 'K': 0, 'eO': ''},
+			{'message': 'ab  cd', 'K': 1, 'eO': ''},
+			{'message': 'ab  cd', 'K': 2, 'eO': 'ab'},
+			{'message': 'ab  cd', 'K': 3, 'eO': 'ab'},
+			{'message': 'ab  cd', 'K': 4, 'eO': 'ab'},
+			{'message': 'ab  cd', 'K': 5, 'eO': 'ab cd'},
+			{'message': 'ab  cd', 'K': 6, 'eO': 'ab cd'},
+			{'message': 'ab  cd', 'K': 100, 'eO': 'ab cd'},
+
+			# two words, space prefix
+			{'message': ' ab  cd', 'K': 0, 'eO': ''},
+			{'message': ' ab  cd', 'K': 1, 'eO': ''},
+			{'message': ' ab  cd', 'K': 2, 'eO': 'ab'},
+			{'message': ' ab  cd', 'K': 3, 'eO': 'ab'},
+			{'message': ' ab  cd', 'K': 4, 'eO': 'ab'},
+			{'message': ' ab  cd', 'K': 5, 'eO': 'ab cd'},
+			{'message': ' ab  cd', 'K': 6, 'eO': 'ab cd'},
+			{'message': ' ab  cd', 'K': 100, 'eO': 'ab cd'},
+
+			# two words, two space prefix
+			{'message': '  ab  cd', 'K': 0, 'eO': ''},
+			{'message': '  ab  cd', 'K': 1, 'eO': ''},
+			{'message': '  ab  cd', 'K': 2, 'eO': 'ab'},
+			{'message': '  ab  cd', 'K': 3, 'eO': 'ab'},
+			{'message': '  ab  cd', 'K': 4, 'eO': 'ab'},
+			{'message': '  ab  cd', 'K': 5, 'eO': 'ab cd'},
+			{'message': '  ab  cd', 'K': 6, 'eO': 'ab cd'},
+			{'message': '  ab  cd', 'K': 100, 'eO': 'ab cd'},
+
+			# two words, trailing space
+			{'message': 'ab  cd ', 'K': 0, 'eO': ''},
+			{'message': 'ab  cd ', 'K': 1, 'eO': ''},
+			{'message': 'ab  cd ', 'K': 2, 'eO': 'ab'},
+			{'message': 'ab  cd ', 'K': 3, 'eO': 'ab'},
+			{'message': 'ab  cd ', 'K': 4, 'eO': 'ab'},
+			{'message': 'ab  cd ', 'K': 5, 'eO': 'ab cd'},
+			{'message': 'ab  cd ', 'K': 6, 'eO': 'ab cd'},
+			{'message': 'ab  cd ', 'K': 100, 'eO': 'ab cd'},
+
+			# two words, two trailing spaces
+			{'message': 'ab  cd  ', 'K': 0, 'eO': ''},
+			{'message': 'ab  cd  ', 'K': 1, 'eO': ''},
+			{'message': 'ab  cd  ', 'K': 2, 'eO': 'ab'},
+			{'message': 'ab  cd  ', 'K': 3, 'eO': 'ab'},
+			{'message': 'ab  cd  ', 'K': 4, 'eO': 'ab'},
+			{'message': 'ab  cd  ', 'K': 5, 'eO': 'ab cd'},
+			{'message': 'ab  cd  ', 'K': 6, 'eO': 'ab cd'},
+			{'message': 'ab  cd  ', 'K': 100, 'eO': 'ab cd'},
+
+			# two words, space prefix and trailing space
+			{'message': ' ab  cd ', 'K': 0, 'eO': ''},
+			{'message': ' ab  cd ', 'K': 1, 'eO': ''},
+			{'message': ' ab  cd ', 'K': 2, 'eO': 'ab'},
+			{'message': ' ab  cd ', 'K': 3, 'eO': 'ab'},
+			{'message': ' ab  cd ', 'K': 4, 'eO': 'ab'},
+			{'message': ' ab  cd ', 'K': 5, 'eO': 'ab cd'},
+			{'message': ' ab  cd ', 'K': 6, 'eO': 'ab cd'},
+			{'message': ' ab  cd ', 'K': 100, 'eO': 'ab cd'},
+
+			# two words, two space prefix and two trailing spaces
+			{'message': '  ab  cd  ', 'K': 0, 'eO': ''},
+			{'message': '  ab  cd  ', 'K': 1, 'eO': ''},
+			{'message': '  ab  cd  ', 'K': 2, 'eO': 'ab'},
+			{'message': '  ab  cd  ', 'K': 3, 'eO': 'ab'},
+			{'message': '  ab  cd  ', 'K': 4, 'eO': 'ab'},
+			{'message': '  ab  cd  ', 'K': 5, 'eO': 'ab cd'},
+			{'message': '  ab  cd  ', 'K': 6, 'eO': 'ab cd'},
+			{'message': '  ab  cd  ', 'K': 100, 'eO': 'ab cd'},
 
 		]
 
@@ -362,103 +496,7 @@ class Gun_IO_Tests(unittest.TestCase):
 			solution(message, K)
 		)
 
-	def test_case4(self):
-		message = ' The quick brown fox jumps over the lazy dog'
-		K = 39
-		self.assertEqual(
-			'The quick brown fox jumps over the lazy',
-			solution(message, K)
-		)
-
-	def test_case5(self):
-		message = ''
-		K = 39
-		self.assertEqual(
-			'',
-			solution(message, K)
-		)
-
-	def test_case6(self):
-		message = ' '
-		K = 39
-		self.assertEqual(
-			'',
-			solution(message, K)
-		)
-
-	def test_case7(self):
-		message = 'Super'
-		K = 2
-		self.assertEqual(
-			'',
-			solution(message, K)
-		)
-
-	def test_case8(self):
-		message = ' Super the       test '
-		K = 2
-		self.assertEqual(
-			'',
-			solution(message, K)
-		)
-
-	def test_case9(self):
-		message = ' Super the test '
-		K = 100
-		self.assertEqual(
-			'Super the test',
-			solution(message, K)
-		)
-
-	def test_case10(self):
-		message = ''
-		K = 100
-		self.assertEqual(
-			'',
-			solution(message, K)
-		)
-
-	def test_case11(self):
-		message = ''
-		K = 0
-		self.assertEqual(
-			'',
-			solution(message, K)
-		)
-
-	def test_case12(self):
-		message = 'one'
-		K = 0
-		self.assertEqual(
-			'',
-			solution(message, K)
-		)
-
-	def test_case13(self):
-		message = 'one'
-		K = 1
-		self.assertEqual(
-			'',
-			solution(message, K)
-		)
-
-	def test_case14(self):
-		message = 'one'
-		K = 2
-		self.assertEqual(
-			'',
-			solution(message, K)
-		)
-
-	def test_case15(self):
-		message = 'one'
-		K = 2
-		self.assertEqual(
-			'',
-			solution(message, K)
-		)
-
-	def test_cases(self):
+	def test_all_possible_cases(self):
 		for case in self.cases:
 			message = case['message']
 			K = case['K']
