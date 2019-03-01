@@ -226,9 +226,14 @@ start really the end'''
 
 class Gun_IO_Tests(unittest.TestCase):
 
-	def heading(self, message):
+	def build_fail_message(self, eO, aO, message, K):
+		if len(eO) == 0:
+			eO = 'None'
+		if len(aO) == 0:
+			aO = 'None'
 		r = '\n\n' + '-' * 100 + '\n\n'
-		r += message
+		r += f'Expected:\n\t{eO}\n\nBut, got:\n\t{aO}'
+		r += f'\n\nWith:\n\tmessage = {message}\n\tK = {K}'
 		r += '\n\n' + '-' * 100 + '\n'
 		return r
 
@@ -283,6 +288,14 @@ class Gun_IO_Tests(unittest.TestCase):
 			{'message': ' ab ', 'K': 3, 'eO': 'ab'},
 			{'message': ' ab ', 'K': 4, 'eO': 'ab'},
 			{'message': ' ab ', 'K': 100, 'eO': 'ab'},
+
+			# two words, no spaces
+			{'message': 'ab cd', 'K': 0, 'eO': ''},
+			{'message': 'ab cd', 'K': 1, 'eO': ''},
+			{'message': 'ab cd', 'K': 2, 'eO': ''},
+			{'message': 'ab cd', 'K': 3, 'eO': ''},
+			{'message': 'ab cd', 'K': 4, 'eO': ''},
+			{'message': 'ab cd', 'K': 5, 'eO': 'ab cd'},
 
 		]
 
@@ -419,4 +432,5 @@ class Gun_IO_Tests(unittest.TestCase):
 			K = case['K']
 			eO = case['eO']
 			aO = solution(message, K)
-			self.assertEqual(eO, aO, self.heading(f'Expected:\n{eO}\n\nBut, got:\n{aO}'))
+			fail_message = self.build_fail_message(eO, aO, message, K)
+			self.assertEqual(eO, aO, fail_message)
