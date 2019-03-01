@@ -4,6 +4,7 @@ import re, math, os, sys
 __all__ = [
 	'find_smallest_integer_in_set',
 	'binary_gap',
+	'gun_io_solution',
 ]
 
 
@@ -34,7 +35,8 @@ def binary_gap(N):
 	return n
 
 
-
+def gun_io_solution(N):
+	pass
 
 
 

@@ -226,15 +226,33 @@ start really the end'''
 
 class Gun_IO_Tests(unittest.TestCase):
 
-	def print_line(self):
+	@classmethod
+	def print_line(cls):
 		print('\n' + '-' * 100 + '\n')
 
 	def setUp(self):
 		self.print_line()
+		self.min = 1
+		self.max = 2147483647
 
 	def tearDown(self):
 		self.print_line()
 
+	def test_case1(self):
+		# setup
+		print('test_case1')
+		N = 1
+
+		# test
+		r = gun_io_solution(N)
 
 
+		# verify
+		self.assertIsNone(r)
+
+	def test_large1(self):
+		''' 10,000 iterations '''
+
+		# setup
+		print('test_large1')
 
